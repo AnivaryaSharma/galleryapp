@@ -1,0 +1,26 @@
+<h2 class="text-center mt-3"><%=@album.title%></h2>
+<p class="text-center"><%=@album.description%></p>
+<p class="text-center"><%=(@album.published)? "published" : "unpublished"%><br>
+<div class="container mb-3">
+  <% if @album.images.attached?%>
+     <div class="row mx-auto gy-4">
+      <% @album.images.each do |img| %>
+         <div class="col-lg-3  col-sm-6 justify-content-center position-relative">
+            <%= image_tag img, style:"width:300px;height:300px;"%>
+            <%if user_signed_in? && current_user.id == @album.user_id%>
+               <%=link_to "X",purge_img_album_path(id: img.id, album_id: @album.id), class:"btn btn-danger rounded-circle position-absolute top-0 end-0"%>
+            <%end%>
+         </div>
+      <%end%>
+     </div>
+   <%end%>
+   <%if user_signed_in? && current_user.id==@album.user_id%>
+      <div class="row d-flex justify-content-center my-4">
+         <%= link_to "Edit Album",edit_album_path, class:"btn btn-warning col-md-6 w-25"%>
+         <%=link_to "destroy",album_path(@album),data:{
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+         },class:"btn btn-danger ms-2 col-md-6 w-25"%>
+      </div>
+   <%end%>
+</div>

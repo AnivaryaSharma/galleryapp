@@ -1,0 +1,6 @@
+<%= search_form_for @q, class:"w-25 m-auto text-center",url: :root do |f| %>
+<%= f.label :tags,"Search By Tags",class:"mb-2 fw-bold "%>
+<%= f.search_field :tags_album_tags_cont, class: 'form-control mb-2 ' %>
+<%= f.submit class: 'btn btn-primary d-inline' %>
+<% end %>
+<%=render "albums/albums",albums:@albums,heading:"All albums"%>
