@@ -3,13 +3,14 @@
    <div class="row g-3 justify-content-center">
       <%albums.each do |album|%>
          <div class="col-lg-3 col-md-6">
-            <div class="card album_card" style="width:18rem">         
-               <%= image_tag  album.cover_image, class:"card-img-top card_img",style:"width:100%;height:20vh"%>
-               <div class="card-body text-center",style="height:50vh">
+            <div class="card album_card" >         
+               <%= image_tag  album.cover_image, class:"card-img-top card_img"%>
+               <div class="card-body text-center">
                   <h5 class="card-title"><%=album.title%></h5>
                   <p class="text"><%=album.description%></p>
                   <p class="text"><b>Created by: </b><%=album.user.username%></p>
-                  <p class="card-text"><%=album.published ? "published" : "unpublished"%></p>
+                  <p class="card-text"><b>Created at: </b><%=album.created_at.to_date%></p>
+                  <p class="card-text"><b>Last updated: </b><%=time_ago_in_words(album.updated_at)%> ago</p>
                   <p class="card-text"><b>Tagged by:</b> <%=album.tagged%></p>
                 <%=link_to "Go to Album",album,class:"btn btn-success"%>
                </div>

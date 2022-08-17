@@ -1,6 +1,5 @@
 <h2 class="text-center mt-3"><%=@album.title%></h2>
 <p class="text-center"><%=@album.description%></p>
-<p class="text-center"><%=(@album.published)? "published" : "unpublished"%><br>
 <div class="container mb-3">
   <% if @album.images.attached?%>
      <div class="row mx-auto gy-4">
